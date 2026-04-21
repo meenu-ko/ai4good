@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI & the Environment</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #3B6D11;
+    --green-light: #EAF3DE;
+    --green-mid: #639922;
+    --teal: #0F6E56;
+    --teal-light: #E1F5EE;
+    --text: #1a1a18;
+    --muted: #5F5E5A;
+    --border: #D3D1C7;
+    --bg: #ffffff;
+    --surface: #F7F6F2;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 0 2rem;
+  }
+  .nav-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--green);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+
+  /* HERO */
+  .hero {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: 2.8rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--green);
+  }
+  .hero-desc {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 420px;
+  }
+  .hero-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+  }
+  .stat-card.accent {
+    background: var(--green-light);
+    border-color: #C0DD97;
+  }
+  .stat-card.tall { grid-column: span 2; display: flex; align-items: center; gap: 1rem; }
+  .stat-num {
+    font-family: 'Lora', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--green);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+  /* DIVIDER */
+  .divider {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* MISCONCEPTION BANNER */
+  .misconception {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 3.5rem 2rem;
+    margin: 3rem 0;
+  }
+  .misconception-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.75rem;
+  }
+  .myth-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .myth-card {
+    background: var(--bg);
+    padding: 1.5rem;
+  }
+  .myth-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+  }
+  .myth-tag.myth { background: #FCEBEB; color: #A32D2D; }
+  .myth-tag.fact { background: var(--green-light); color: var(--green); }
+  .myth-card h3 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+  .myth-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+  /* TOPICS SECTION */
+  .topics-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 2rem 5rem;
+  }
+  .topics-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  .topics-header h2 {
+    font-family: 'Lora', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .topic-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .topic-card:hover {
+    border-color: #97C459;
+    transform: translateY(-2px);
+  }
+  .topic-icon-wrap {
+    padding: 1.5rem 1.5rem 0.75rem;
+    font-size: 1.75rem;
+  }
+  .topic-body { padding: 0 1.5rem 1.5rem; }
+  .topic-body h3 {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--text);
+  }
+  .topic-body p { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+  .topic-tag {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--green);
+    background: var(--green-light);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* HIGHLIGHT QUOTE */
+  .highlight {
+    background: var(--green);
+    color: white;
+    padding: 4rem 2rem;
+  }
+  .highlight-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .highlight-inner blockquote {
+    font-family: 'Lora', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.5;
+    opacity: 0.95;
+  }
+  .highlight-inner cite {
+    display: block;
+    margin-top: 1.25rem;
+    font-size: 0.8rem;
+    font-style: normal;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.65;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+  }
+  footer p { font-size: 0.78rem; color: var(--muted); }
+
+  @media (max-width: 720px) {
+    .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 1.25rem 2.5rem; }
+    .hero h1 { font-size: 2rem; }
+    .myth-grid { grid-template-columns: 1fr; }
+    .topics-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 480px) {
+    .topics-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">AI & Earth</a>
+    <ul class="nav-links">
+      <li><a href="#misconceptions">Misconceptions</a></li>
+      <li><a href="#topics">Topics</a></li>
+      <li><a href="#takeaway">Takeaway</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <p class="hero-eyebrow">Rethinking the narrative</p>
+    <h1>AI is a tool for <em>healing</em> the planet</h1>
+    <p class="hero-desc">
+      Artificial intelligence gets a bad reputation for its energy use — but the full picture tells a very different story. From protecting rainforests to predicting climate disasters, AI is becoming one of our most powerful environmental allies.
+    </p>
+  </div>
+  <div class="hero-visual">
+    <div class="stat-card accent">
+      <div class="stat-num">80%</div>
+      <div class="stat-label">reduction in poaching in monitored wildlife zones using AI surveillance</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">30%</div>
+      <div class="stat-label">more accurate flood predictions with AI climate models</div>
+    </div>
+    <div class="stat-card tall">
+      <div>
+        <div class="stat-num">1.5B</div>
+        <div class="stat-label">trees tracked globally by AI-powered satellite analysis</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISCONCEPTIONS -->
+<section id="misconceptions" class="misconception">
+  <div class="misconception-inner">
+    <p class="section-label">Common misconceptions</p>
+    <div class="myth-grid">
+      <div class="myth-card">
+        <span class="myth-tag myth">Myth</span>
+        <h3>"AI is too energy-hungry to be green"</h3>
+        <p>Training large AI models does use energy — but once trained, models run efficiently. AI-driven grid optimization already saves far more energy than it consumes.</p>
+      </div>
+      <div class="myth-card">
+        <span class="myth-tag myth">Myth</span>
+        <h3>"AI will replace environmentalists"</h3>
+        <p>AI is a tool, not a replacement. It amplifies what scientists, activists, and conservationists can do — processing satellite data in hours that would take years manually.</p>
+      </div>
+      <div class="myth-card">
+        <span class="myth-tag myth">Myth</span>
+        <h3>"Tech companies don't care about carbon"</h3>
+        <p>Many AI labs now run on renewable energy. Google, Microsoft, and others have made binding net-zero commitments and are using AI to meet them faster.</p>
+      </div>
+      <div class="myth-card">
+        <span class="myth-tag fact">Fact</span>
+        <h3>AI actively reduces emissions in power grids</h3>
+        <p>Google's DeepMind reduced data center cooling energy by 40% using AI. Smart grid AI cuts waste at a national scale, 24 hours a day.</p>
+      </div>
+      <div class="myth-card">
+        <span class="myth-tag fact">Fact</span>
+        <h3>AI detects illegal deforestation in real time</h3>
+        <p>Rainforest monitoring systems like Global Forest Watch use machine learning to flag illegal logging within hours of it happening, anywhere on Earth.</p>
+      </div>
+      <div class="myth-card">
+        <span class="myth-tag fact">Fact</span>
+        <h3>AI models can predict extreme weather weeks ahead</h3>
+        <p>New AI-based weather models outperform traditional physics-based systems, giving communities more time to prepare for floods, hurricanes, and droughts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOPICS GRID -->
+<section id="topics" class="topics-section">
+  <div class="topics-header">
+    <h2>Where AI is making a difference</h2>
+  </div>
+  <div class="topics-grid">
+
+    <div class="topic-card">
+      <div class="topic-icon-wrap">🌊</div>
+      <div class="topic-body">
+        <h3>Oceans</h3>
+        <p>AI analyzes sonar data and satellite imagery to map coral reef health, track illegal fishing vessels, and detect plastic pollution across millions of square miles of ocean.</p>
+        <span class="topic-tag">Marine conservation</span>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-icon-wrap">🌳</div>
+      <div class="topic-body">
+        <h3>Forests</h3>
+        <p>Machine learning models monitor tree cover loss in near real-time using satellite data. Acoustic AI systems even detect illegal chainsaw activity by listening to rainforest soundscapes.</p>
+        <span class="topic-tag">Deforestation detection</span>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-icon-wrap">🦁</div>
+      <div class="topic-body">
+        <h3>Wildlife</h3>
+        <p>Computer vision identifies individual animals from camera trap photos, tracking population sizes across vast territories. AI has helped rangers predict and prevent poaching before it happens.</p>
+        <span class="topic-tag">Species monitoring</span>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-icon-wrap">🌡️</div>
+      <div class="topic-body">
+        <h3>Climate predictions</h3>
+        <p>AI-powered climate models simulate ocean-atmosphere interactions with unprecedented accuracy, helping scientists project long-term warming patterns and pinpoint which regions are most at risk.</p>
+        <span class="topic-tag">Climate science</span>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-icon-wrap">🦠</div>
+      <div class="topic-body">
+        <h3>Disease</h3>
+        <p>Environmental disease surveillance AI tracks outbreaks of mosquito-borne illnesses that expand with climate change, allowing early intervention. It also monitors ecosystem stress that signals emerging zoonotic threats.</p>
+        <span class="topic-tag">Epidemiology</span>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-icon-wrap">🌾</div>
+      <div class="topic-body">
+        <h3>Agriculture</h3>
+        <p>Precision farming AI reduces fertilizer and pesticide use by up to 25%, cuts water consumption through smart irrigation, and monitors crop health with drone imagery to reduce food waste.</p>
+        <span class="topic-tag">Sustainable farming</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HIGHLIGHT -->
+<section id="takeaway" class="highlight">
+  <div class="highlight-inner">
+    <blockquote>
+      "The question is not whether AI uses energy — everything does. The question is whether it creates more value for the planet than it costs. Right now, the answer is yes."
+    </blockquote>
+    <cite>The case for environmental AI</cite>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>AI & the Environment &mdash; an informational overview &mdash; 2025</p>
+</footer>
+
+</body>
+</html>
