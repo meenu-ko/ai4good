@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meenu - AI & the Environment</title>
+<title>AI & the Environment</title>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -12,6 +12,11 @@
     --green: #3B6D11;
     --green-light: #EAF3DE;
     --green-mid: #639922;
+    --green-border: #C0DD97;
+    --blue: #185FA5;
+    --blue-light: #E6F1FB;
+    --blue-mid: #378ADD;
+    --blue-border: #B5D4F4;
     --teal: #0F6E56;
     --teal-light: #E1F5EE;
     --text: #1a1a18;
@@ -31,11 +36,10 @@
     line-height: 1.7;
   }
 
-  /* NAV */
   nav {
     position: sticky;
     top: 0;
-    background: rgba(255,255,255,0.95);
+    background: rgba(255,255,255,0.96);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
     z-index: 100;
@@ -57,11 +61,7 @@
     text-decoration: none;
     letter-spacing: -0.01em;
   }
-  .nav-links {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-  }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
   .nav-links a {
     font-size: 0.85rem;
     color: var(--muted);
@@ -71,7 +71,6 @@
   }
   .nav-links a:hover { color: var(--green); }
 
-  /* HERO */
   .hero {
     max-width: 1000px;
     margin: 0 auto;
@@ -98,50 +97,24 @@
     color: var(--text);
     margin-bottom: 1.25rem;
   }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--green);
-  }
-  .hero-desc {
-    font-size: 1rem;
-    color: var(--muted);
-    line-height: 1.75;
-    max-width: 420px;
-  }
-  .hero-visual {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
+  .hero h1 em { font-style: italic; color: var(--green); }
+  .hero-desc { font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 420px; }
+
+  .hero-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .stat-card {
     background: var(--surface);
     border-radius: 12px;
     padding: 1.25rem;
     border: 1px solid var(--border);
   }
-  .stat-card.accent {
-    background: var(--green-light);
-    border-color: #C0DD97;
-  }
+  .stat-card.green-accent { background: var(--green-light); border-color: var(--green-border); }
+  .stat-card.blue-accent { background: var(--blue-light); border-color: var(--blue-border); }
   .stat-card.tall { grid-column: span 2; display: flex; align-items: center; gap: 1rem; }
-  .stat-num {
-    font-family: 'Lora', serif;
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--green);
-    line-height: 1;
-  }
+  .stat-num { font-family: 'Lora', serif; font-size: 2rem; font-weight: 600; line-height: 1; }
+  .stat-num.green { color: var(--green); }
+  .stat-num.blue { color: var(--blue); }
   .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 4px; line-height: 1.4; }
 
-  /* DIVIDER */
-  .divider {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    border-top: 1px solid var(--border);
-  }
-
-  /* MISCONCEPTION BANNER */
   .misconception {
     background: var(--surface);
     border-top: 1px solid var(--border);
@@ -149,10 +122,7 @@
     padding: 3.5rem 2rem;
     margin: 3rem 0;
   }
-  .misconception-inner {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
+  .misconception-inner { max-width: 1000px; margin: 0 auto; }
   .section-label {
     font-size: 0.72rem;
     font-weight: 500;
@@ -170,10 +140,7 @@
     border-radius: 12px;
     overflow: hidden;
   }
-  .myth-card {
-    background: var(--bg);
-    padding: 1.5rem;
-  }
+  .myth-card { background: var(--bg); padding: 1.5rem; }
   .myth-tag {
     display: inline-block;
     font-size: 0.7rem;
@@ -186,110 +153,147 @@
   }
   .myth-tag.myth { background: #FCEBEB; color: #A32D2D; }
   .myth-tag.fact { background: var(--green-light); color: var(--green); }
-  .myth-card h3 {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--text);
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
-  }
+  .myth-card h3 { font-size: 0.9rem; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; line-height: 1.4; }
   .myth-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
 
-  /* TOPICS SECTION */
-  .topics-section {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 2rem 2rem 5rem;
-  }
-  .topics-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-  }
+  .topics-section { max-width: 1000px; margin: 0 auto; padding: 2rem 2rem 5rem; }
+  .topics-header { margin-bottom: 0.5rem; }
   .topics-header h2 {
     font-family: 'Lora', serif;
     font-size: 1.8rem;
     font-weight: 600;
     letter-spacing: -0.02em;
   }
-  .topics-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+  .topics-hint {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
+
+  .topics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
   .topic-card {
     border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
-    transition: border-color 0.2s, transform 0.2s;
-    cursor: default;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    background: var(--bg);
   }
-  .topic-card:hover {
-    border-color: #97C459;
-    transform: translateY(-2px);
+  .topic-card:hover { border-color: var(--blue-border); box-shadow: 0 2px 14px rgba(55,138,221,0.09); }
+  .topic-card.open { border-color: var(--blue-mid); }
+
+  .topic-header {
+    padding: 1.4rem 1.5rem 1.2rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
   }
-  .topic-icon-wrap {
-    padding: 1.5rem 1.5rem 0.75rem;
-    font-size: 1.75rem;
-  }
-  .topic-body { padding: 0 1.5rem 1.5rem; }
-  .topic-body h3 {
+  .topic-header-left { display: flex; align-items: flex-start; gap: 0.85rem; }
+  .topic-icon { font-size: 1.5rem; line-height: 1; margin-top: 2px; flex-shrink: 0; }
+  .topic-header h3 {
     font-family: 'Lora', serif;
     font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 0.4rem;
     color: var(--text);
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
   }
-  .topic-body p { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+  .topic-preview { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
   .topic-tag {
     display: inline-block;
-    margin-top: 0.75rem;
-    font-size: 0.7rem;
+    margin-top: 0.55rem;
+    font-size: 0.68rem;
     font-weight: 500;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--green);
-    background: var(--green-light);
     padding: 2px 8px;
     border-radius: 4px;
   }
+  .topic-tag.green-tag { color: var(--green); background: var(--green-light); }
+  .topic-tag.blue-tag { color: var(--blue); background: var(--blue-light); }
 
-  /* HIGHLIGHT QUOTE */
+  .chevron {
+    flex-shrink: 0;
+    margin-top: 4px;
+    width: 18px;
+    height: 18px;
+    color: var(--muted);
+    transition: transform 0.3s ease, color 0.2s;
+  }
+  .topic-card.open .chevron { transform: rotate(180deg); color: var(--blue-mid); }
+
+  .topic-expand {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .topic-card.open .topic-expand { max-height: 800px; }
+
+  .topic-expand-inner {
+    border-top: 1px solid var(--border);
+    padding: 1.4rem 1.5rem 1.5rem;
+  }
+
+  .expand-section { margin-bottom: 1.2rem; }
+  .expand-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.45rem;
+  }
+  .expand-section p { font-size: 0.83rem; color: var(--text); line-height: 1.7; }
+
+  .project-box {
+    background: var(--blue-light);
+    border: 1px solid var(--blue-border);
+    border-left: 3px solid var(--blue-mid);
+    border-radius: 8px;
+    padding: 1rem 1.1rem;
+    margin-top: 1rem;
+  }
+  .project-box-label {
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.3rem;
+  }
+  .project-box h4 { font-size: 0.88rem; font-weight: 500; color: var(--blue); margin-bottom: 0.3rem; }
+  .project-box p { font-size: 0.8rem; color: #185FA5; line-height: 1.65; opacity: 0.9; }
+
   .highlight {
-    background: var(--green);
+    background: linear-gradient(135deg, var(--green) 0%, var(--teal) 55%, var(--blue) 100%);
     color: white;
-    padding: 4rem 2rem;
+    padding: 4.5rem 2rem;
   }
-  .highlight-inner {
-    max-width: 680px;
-    margin: 0 auto;
-    text-align: center;
-  }
+  .highlight-inner { max-width: 680px; margin: 0 auto; text-align: center; }
   .highlight-inner blockquote {
     font-family: 'Lora', serif;
-    font-size: 1.6rem;
+    font-size: 1.55rem;
     font-weight: 400;
     font-style: italic;
-    line-height: 1.5;
+    line-height: 1.55;
     opacity: 0.95;
   }
   .highlight-inner cite {
     display: block;
     margin-top: 1.25rem;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-style: normal;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    opacity: 0.65;
+    opacity: 0.6;
   }
 
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 2rem;
-    text-align: center;
-  }
+  footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; }
   footer p { font-size: 0.78rem; color: var(--muted); }
 
   @media (max-width: 720px) {
@@ -299,17 +303,14 @@
     .topics-grid { grid-template-columns: 1fr 1fr; }
     .nav-links { display: none; }
   }
-  @media (max-width: 480px) {
-    .topics-grid { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 480px) { .topics-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-logo">AI & Earth</a>
+    <a href="#" class="nav-logo">AI &amp; Earth</a>
     <ul class="nav-links">
       <li><a href="#misconceptions">Misconceptions</a></li>
       <li><a href="#topics">Topics</a></li>
@@ -318,34 +319,32 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div>
     <p class="hero-eyebrow">Rethinking the narrative</p>
     <h1>AI is a tool for <em>healing</em> the planet</h1>
     <p class="hero-desc">
-      Artificial intelligence gets a bad reputation for its energy use — but the full picture tells a very different story. From protecting rainforests to predicting climate disasters, AI is becoming one of our most powerful environmental allies.
+      Artificial intelligence gets a bad reputation for its energy use, but the full picture tells a very different story. From protecting rainforests to predicting climate disasters, AI is becoming one of our most powerful environmental allies.
     </p>
   </div>
   <div class="hero-visual">
-    <div class="stat-card accent">
-      <div class="stat-num">80%</div>
+    <div class="stat-card green-accent">
+      <div class="stat-num green">80%</div>
       <div class="stat-label">reduction in poaching in monitored wildlife zones using AI surveillance</div>
     </div>
-    <div class="stat-card">
-      <div class="stat-num">30%</div>
+    <div class="stat-card blue-accent">
+      <div class="stat-num blue">30%</div>
       <div class="stat-label">more accurate flood predictions with AI climate models</div>
     </div>
     <div class="stat-card tall">
       <div>
-        <div class="stat-num">1.5B</div>
+        <div class="stat-num green">1.5B</div>
         <div class="stat-label">trees tracked globally by AI-powered satellite analysis</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MISCONCEPTIONS -->
 <section id="misconceptions" class="misconception">
   <div class="misconception-inner">
     <p class="section-label">Common misconceptions</p>
@@ -353,12 +352,12 @@
       <div class="myth-card">
         <span class="myth-tag myth">Myth</span>
         <h3>"AI is too energy-hungry to be green"</h3>
-        <p>Training large AI models does use energy — but once trained, models run efficiently. AI-driven grid optimization already saves far more energy than it consumes.</p>
+        <p>Training large AI models does use energy, but once trained, models run efficiently. AI-driven grid optimization already saves far more energy than it consumes.</p>
       </div>
       <div class="myth-card">
         <span class="myth-tag myth">Myth</span>
         <h3>"AI will replace environmentalists"</h3>
-        <p>AI is a tool, not a replacement. It amplifies what scientists, activists, and conservationists can do — processing satellite data in hours that would take years manually.</p>
+        <p>AI is a tool, not a replacement. It amplifies what scientists, activists, and conservationists can do, processing satellite data in hours that would take years manually.</p>
       </div>
       <div class="myth-card">
         <span class="myth-tag myth">Myth</span>
@@ -384,84 +383,201 @@
   </div>
 </section>
 
-<!-- TOPICS GRID -->
 <section id="topics" class="topics-section">
   <div class="topics-header">
     <h2>Where AI is making a difference</h2>
   </div>
+  <p class="topics-hint">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="#888780"/><line x1="7" y1="6" x2="7" y2="10.5" stroke="#888780" stroke-linecap="round"/><circle cx="7" cy="4" r="0.75" fill="#888780"/></svg>
+    Click any card to explore further
+  </p>
   <div class="topics-grid">
 
-    <div class="topic-card">
-      <div class="topic-icon-wrap">🌊</div>
-      <div class="topic-body">
-        <h3>Oceans</h3>
-        <p>AI analyzes sonar data and satellite imagery to map coral reef health, track illegal fishing vessels, and detect plastic pollution across millions of square miles of ocean.</p>
-        <span class="topic-tag">Marine conservation</span>
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-icon">🌊</span>
+          <div>
+            <h3>Oceans</h3>
+            <p class="topic-preview">AI maps coral reef health, tracks illegal fishing, and detects plastic pollution across millions of miles of ocean.</p>
+            <span class="topic-tag blue-tag">Marine conservation</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="topic-expand">
+        <div class="topic-expand-inner">
+          <div class="expand-section">
+            <p class="expand-label">How AI is involved</p>
+            <p>AI systems process enormous volumes of sonar data, underwater imagery, and satellite feeds to monitor ocean health at a scale no human team could manage alone. Deep learning models identify coral bleaching events early, allowing scientists to respond before damage becomes irreversible. Computer vision trained on drone footage classifies ocean plastic by type and density, informing cleanup operations. AI-powered vessel monitoring systems cross-reference GPS signals with fishing licenses in real time to flag illegal trawling anywhere in the world.</p>
+          </div>
+          <div class="project-box">
+            <p class="project-box-label">Real-world project</p>
+            <h4>Global Fishing Watch</h4>
+            <p>This open-access platform uses AI to analyze AIS vessel tracking data from over 65,000 ships worldwide. Its machine learning models detect suspicious patterns indicating illegal fishing and have helped governments prosecute violations in international waters, contributing to protected marine areas in Chile, Ecuador, and across West Africa.</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="topic-card">
-      <div class="topic-icon-wrap">🌳</div>
-      <div class="topic-body">
-        <h3>Forests</h3>
-        <p>Machine learning models monitor tree cover loss in near real-time using satellite data. Acoustic AI systems even detect illegal chainsaw activity by listening to rainforest soundscapes.</p>
-        <span class="topic-tag">Deforestation detection</span>
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-icon">🌳</span>
+          <div>
+            <h3>Forests</h3>
+            <p class="topic-preview">Machine learning monitors tree cover loss in near real-time and acoustic AI listens for illegal chainsaw activity in rainforests.</p>
+            <span class="topic-tag green-tag">Deforestation detection</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="topic-expand">
+        <div class="topic-expand-inner">
+          <div class="expand-section">
+            <p class="expand-label">How AI is involved</p>
+            <p>Forests cover roughly 31% of Earth's land surface, making manual monitoring impossible. AI systems analyze multispectral satellite imagery from sources like Landsat and Sentinel-2 to detect tree cover changes within days of them occurring. Beyond visual data, acoustic monitoring AI classifies sounds in the forest, distinguishing bird calls from chainsaws, trucks, and gunshots with high accuracy. Natural language processing tools also scan trade and customs databases to flag timber shipments that may have originated from illegally logged forests.</p>
+          </div>
+          <div class="project-box">
+            <p class="project-box-label">Real-world project</p>
+            <h4>Rainforest Connection (RFCx)</h4>
+            <p>RFCx deploys repurposed smartphones in forest canopies that stream audio to cloud-based AI models. These models detect illegal logging sounds in real time and alert rangers via SMS within minutes. The system is active in over 20 countries and has helped indigenous communities protect their land without requiring them to be present in the forest at all times.</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="topic-card">
-      <div class="topic-icon-wrap">🦁</div>
-      <div class="topic-body">
-        <h3>Wildlife</h3>
-        <p>Computer vision identifies individual animals from camera trap photos, tracking population sizes across vast territories. AI has helped rangers predict and prevent poaching before it happens.</p>
-        <span class="topic-tag">Species monitoring</span>
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-icon">🦁</span>
+          <div>
+            <h3>Wildlife</h3>
+            <p class="topic-preview">Computer vision identifies individual animals from camera traps and AI helps rangers predict poaching before it happens.</p>
+            <span class="topic-tag green-tag">Species monitoring</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="topic-expand">
+        <div class="topic-expand-inner">
+          <div class="expand-section">
+            <p class="expand-label">How AI is involved</p>
+            <p>Wildlife conservationists often rely on camera traps, which can generate hundreds of thousands of images per week. AI models classify species, count individuals, and identify specific animals by unique markings such as stripe patterns on tigers or spot configurations on leopards, turning months of manual tagging into hours of automated analysis. Predictive AI systems go further by analyzing poaching incident records, patrol routes, terrain data, and weather to forecast where poachers are most likely to strike, allowing rangers to be deployed proactively rather than reactively.</p>
+          </div>
+          <div class="project-box">
+            <p class="project-box-label">Real-world project</p>
+            <h4>PAWS (Protection Assistant for Wildlife Security)</h4>
+            <p>Developed by USC and now used by the WWF and various national parks, PAWS uses a game-theoretic AI model to predict poacher behavior and optimize ranger patrol schedules. Field tests in Uganda and Cambodia showed a measurable reduction in poaching activity in areas where PAWS-guided patrols were deployed.</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="topic-card">
-      <div class="topic-icon-wrap">🌡️</div>
-      <div class="topic-body">
-        <h3>Climate predictions</h3>
-        <p>AI-powered climate models simulate ocean-atmosphere interactions with unprecedented accuracy, helping scientists project long-term warming patterns and pinpoint which regions are most at risk.</p>
-        <span class="topic-tag">Climate science</span>
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-icon">🌡️</span>
+          <div>
+            <h3>Climate predictions</h3>
+            <p class="topic-preview">AI climate models simulate ocean-atmosphere interactions and project long-term warming with unprecedented speed and accuracy.</p>
+            <span class="topic-tag blue-tag">Climate science</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="topic-expand">
+        <div class="topic-expand-inner">
+          <div class="expand-section">
+            <p class="expand-label">How AI is involved</p>
+            <p>Traditional climate models use physics equations to simulate the atmosphere and are computationally expensive, sometimes taking weeks to run on supercomputers. AI-based models, trained on decades of historical climate data, can run equivalent simulations thousands of times faster. This allows scientists to test far more scenarios and produce more granular regional forecasts. Neural networks are also being used to improve flood mapping, predict wildfire spread, and model sea level rise at the local level, turning broad global projections into actionable local intelligence.</p>
+          </div>
+          <div class="project-box">
+            <p class="project-box-label">Real-world project</p>
+            <h4>Google DeepMind's GraphCast</h4>
+            <p>GraphCast is an AI weather prediction model that outperformed the European Centre for Medium-Range Weather Forecasts model in over 90% of tested variables. It produces 10-day global weather forecasts in under a minute on a single computer, compared to hours of supercomputer time for traditional models. Its improved accuracy gives disaster response teams earlier warning of extreme events like hurricanes and heat waves.</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="topic-card">
-      <div class="topic-icon-wrap">🦠</div>
-      <div class="topic-body">
-        <h3>Disease</h3>
-        <p>Environmental disease surveillance AI tracks outbreaks of mosquito-borne illnesses that expand with climate change, allowing early intervention. It also monitors ecosystem stress that signals emerging zoonotic threats.</p>
-        <span class="topic-tag">Epidemiology</span>
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-icon">🦠</span>
+          <div>
+            <h3>Disease</h3>
+            <p class="topic-preview">AI tracks climate-linked disease outbreaks and monitors ecosystem stress that signals emerging infectious threats.</p>
+            <span class="topic-tag blue-tag">Epidemiology</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="topic-expand">
+        <div class="topic-expand-inner">
+          <div class="expand-section">
+            <p class="expand-label">How AI is involved</p>
+            <p>As temperatures rise, mosquito habitats expand into new regions, bringing diseases like dengue, malaria, and Zika with them. AI systems correlate climate data, land use changes, and historical outbreak records to predict where these diseases will appear next, allowing health ministries to deploy preventive measures before outbreaks begin. Beyond vector-borne illness, AI monitors the health of wildlife populations and ecosystems. When animal diversity drops or species flee an area, it often precedes the spillover of animal viruses into human populations, and AI makes these warning signals detectable at a global scale.</p>
+          </div>
+          <div class="project-box">
+            <p class="project-box-label">Real-world project</p>
+            <h4>HealthMap (Boston Children's Hospital)</h4>
+            <p>HealthMap is an AI-powered disease surveillance platform that aggregates data from news reports, social media, official health alerts, and eyewitness accounts in dozens of languages. It was one of the first systems to detect the 2014 Ebola outbreak in West Africa and flagged early signals of COVID-19 in Wuhan before official announcements were made, monitoring over 200 diseases across 200 countries in real time.</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="topic-card">
-      <div class="topic-icon-wrap">🌾</div>
-      <div class="topic-body">
-        <h3>Agriculture</h3>
-        <p>Precision farming AI reduces fertilizer and pesticide use by up to 25%, cuts water consumption through smart irrigation, and monitors crop health with drone imagery to reduce food waste.</p>
-        <span class="topic-tag">Sustainable farming</span>
+    <div class="topic-card" onclick="toggleCard(this)">
+      <div class="topic-header">
+        <div class="topic-header-left">
+          <span class="topic-icon">🌾</span>
+          <div>
+            <h3>Agriculture</h3>
+            <p class="topic-preview">Precision farming AI cuts fertilizer use by up to 25%, optimizes irrigation, and monitors crop health with drone imagery.</p>
+            <span class="topic-tag green-tag">Sustainable farming</span>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="topic-expand">
+        <div class="topic-expand-inner">
+          <div class="expand-section">
+            <p class="expand-label">How AI is involved</p>
+            <p>Agriculture accounts for roughly 70% of global freshwater use and is a major source of greenhouse gas emissions through overuse of fertilizers and inefficient machinery. AI addresses this from multiple angles. Computer vision models mounted on drones or tractors identify pest infestations and nutrient deficiencies at the plant level, allowing targeted treatment rather than blanket application of chemicals. Soil sensors combined with machine learning optimize irrigation schedules by predicting exactly when and where water is needed. AI also forecasts crop yields months in advance, reducing food waste by helping supply chains plan more accurately.</p>
+          </div>
+          <div class="project-box">
+            <p class="project-box-label">Real-world project</p>
+            <h4>Plantix by PEAT</h4>
+            <p>Plantix is a smartphone app used by over 10 million farmers that uses AI image recognition to diagnose crop diseases, pest infestations, and nutrient deficiencies from a single photo. Operating in over 18 languages across India, Indonesia, and sub-Saharan Africa, it gives smallholder farmers instant expert-level guidance, reducing unnecessary pesticide use and improving yields without additional chemical inputs.</p>
+          </div>
+        </div>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- HIGHLIGHT -->
 <section id="takeaway" class="highlight">
   <div class="highlight-inner">
     <blockquote>
-      "The question is not whether AI uses energy — everything does. The question is whether it creates more value for the planet than it costs. Right now, the answer is yes."
+      "The question is not whether AI uses energy. Everything does. The question is whether it creates more value for the planet than it costs. Right now, the answer is yes."
     </blockquote>
     <cite>The case for environmental AI</cite>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p>AI & the Environment &mdash; an informational overview &mdash; 2025</p>
+  <p>AI &amp; the Environment &nbsp;·&nbsp; an informational overview &nbsp;·&nbsp; 2025</p>
 </footer>
+
+<script>
+  function toggleCard(card) {
+    const isOpen = card.classList.contains('open');
+    document.querySelectorAll('.topic-card.open').forEach(c => c.classList.remove('open'));
+    if (!isOpen) card.classList.add('open');
+  }
+</script>
 
 </body>
 </html>
